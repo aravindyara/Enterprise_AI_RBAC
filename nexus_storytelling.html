@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexus: The Enterprise Immune System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;600;800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #030712;
+      --accent: #3b82f6;
+      --accent-glow: rgba(59, 130, 246, 0.5);
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --glass: rgba(17, 24, 39, 0.7);
+      --border: rgba(255, 255, 255, 0.1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      overflow: hidden;
+      cursor: default;
+    }
+
+    /* Background Animation */
+    .bg-animation {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: radial-gradient(circle at 50% 50%, #0f172a 0%, #030712 100%);
+    }
+
+    .bg-glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: var(--accent-glow);
+      filter: blur(120px);
+      border-radius: 50%;
+      opacity: 0.15;
+      animation: float 20s infinite alternate ease-in-out;
+    }
+
+    @keyframes float {
+      0% { transform: translate(-10%, -10%); }
+      100% { transform: translate(100%, 80%); }
+    }
+
+    /* Slide System */
+    .slides-container {
+      height: 100vh;
+      width: 100vw;
+      transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1);
+    }
+
+    .slide {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 4rem;
+      text-align: center;
+      position: relative;
+    }
+
+    /* Typography */
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 4.5rem;
+      font-weight: 900;
+      letter-spacing: -2px;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 800px;
+      line-height: 1.6;
+    }
+
+    /* Hero Image Wrapper */
+    .hero-image-wrapper {
+      position: relative;
+      margin-top: 3rem;
+      width: 100%;
+      max-width: 900px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      animation: reveal 1.5s ease-out;
+    }
+
+    @keyframes reveal {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-image-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Grid Layout for Pillars */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      max-width: 1000px;
+      margin-top: 3rem;
+    }
+
+    .pillar-card {
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      padding: 2.5rem;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      text-align: left;
+      transition: all 0.3s ease;
+    }
+
+    .pillar-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-8px);
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+    }
+
+    .pillar-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .pillar-card h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      color: var(--accent);
+    }
+
+    .pillar-card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Navigation */
+    .nav-hints {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.5;
+    }
+
+    /* High Stakes Slide */
+    .stakes-container {
+      background: rgba(239, 68, 68, 0.05);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      padding: 3rem;
+      border-radius: 32px;
+      max-width: 900px;
+    }
+
+    .stakes-title {
+      color: #f87171 !important;
+    }
+
+    /* Utilities */
+    .accent-text { color: var(--accent); }
+    .bold { font-weight: 800; color: #fff; }
+
+  </style>
+</head>
+<body>
+
+  <div class="bg-animation">
+    <div class="bg-glow"></div>
+  </div>
+
+  <div class="slides-container" id="container">
+    
+    <!-- SLIDE 1: TITLE -->
+    <section class="slide">
+      <h1>NEXUS</h1>
+      <p class="subtitle">The Invisible Bodyguard for Enterprise Intelligence</p>
+      <div class="hero-image-wrapper">
+        <img src="static/nexus_hero.png" alt="Nexus Immune System">
+      </div>
+      <div class="subtitle" style="margin-top: 2rem; font-style: italic;">"Securing our Innovation, Protecting our Legacy."</div>
+    </section>
+
+    <!-- SLIDE 2: THE PROBLEM -->
+    <section class="slide">
+      <div class="stakes-container">
+        <h1 class="stakes-title">The $10M Question</h1>
+        <p class="subtitle" style="margin-bottom: 2rem;">As we embrace AI, our most sensitive data becomes its fuel. <br> But what happens if the AI feeds the wrong secrets to the wrong person?</p>
+        <div style="display: flex; justify-content: center; gap: 4rem;">
+          <div>
+            <div style="font-size: 3rem;">⚠️</div>
+            <p class="bold">Data Leakage</p>
+          </div>
+          <div>
+            <div style="font-size: 3rem;">⚖️</div>
+            <p class="bold">Regulatory Fines</p>
+          </div>
+          <div>
+            <div style="font-size: 3rem;">💔</div>
+            <p class="bold">Loss of Trust</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: THE SOLUTION -->
+    <section class="slide">
+      <h1>The Living Shield</h1>
+      <p class="subtitle">Nexus is not just a tool. It is an <span class="accent-text bold">Enterprise Immune System</span> that breathes with our data, ensuring safety at every layer.</p>
+      
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon">🏰</div>
+          <h3>The Gatekeeper</h3>
+          <p>Absolute certainty of identity. We know who is in the vault before we show them a single byte.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">⚖️</div>
+          <h3>The Rule of Law</h3>
+          <p>Dynamic policies that never sleep. If the law says 'No', the system says 'No' instantly.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">📡</div>
+          <h3>The Shadow Shield</h3>
+          <p>Real-time visibility into every attempt to bypass our security. We see the threats before they manifest.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">👁️</div>
+          <h3>The Strategic Lens</h3>
+          <p>AI that filters out the noise and provides leadership with a clear, safe view of the operation.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: CONCLUSION -->
+    <section class="slide">
+      <h1>Speed Without Fear</h1>
+      <p class="subtitle" style="font-size: 1.5rem;">Security used to be a <span class="accent-text">Bottleneck</span>.<br>With Nexus, it becomes our <span class="accent-text">Competitive Advantage</span>.</p>
+      <div style="margin-top: 4rem; display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+        <div style="width: 200px; height: 4px; background: var(--accent); border-radius: 2px;"></div>
+        <p class="bold">Ready to Scale Safely.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="nav-hints">Use Arrow Keys or Scroll to Navigate</div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const container = document.getElementById('container');
+    const totalSlides = slides.length;
+    let isTransitioning = false;
+
+    function goToSlide(index) {
+      if (index < 0 || index >= totalSlides || isTransitioning) return;
+      isTransitioning = true;
+      currentSlide = index;
+      container.style.transform = `translateY(-${currentSlide * 100}vh)`;
+      setTimeout(() => { isTransitioning = false; }, 800);
+    }
+
+    window.addEventListener('wheel', (e) => {
+      if (e.deltaY > 0) goToSlide(currentSlide + 1);
+      else goToSlide(currentSlide - 1);
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown' || e.key === ' ') goToSlide(currentSlide + 1);
+      if (e.key === 'ArrowUp') goToSlide(currentSlide - 1);
+    });
+  </script>
+</body>
+</html>

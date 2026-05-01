@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@theme {
+  --color-finance-light: #e0e7ff;
+  --color-finance-main: #4f46e5;
+  --color-finance-dark: #3730a3;
+
+  --color-hr-light: #f0fdf4;
+  --color-hr-main: #16a34a;
+  --color-hr-dark: #166534;
+
+  --color-legal-light: #fef2f2;
+  --color-legal-main: #dc2626;
+  --color-legal-dark: #991b1b;
+}
+
+@keyframes progress {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(0.98); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+.animate-shake {
+  animation: shake 0.2s ease-in-out 0s 2;
+}
+
+.animate-progress {
+  animation: progress 2s linear infinite;
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 4s ease-in-out infinite;
+}
+
+:root {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Glassmorphism helpers for non-tailwind contexts */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
